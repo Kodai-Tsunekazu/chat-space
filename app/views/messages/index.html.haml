@@ -37,11 +37,11 @@
     .form
       %form.new-message
         .input-box
-          %input.input-box__text{:name => "message[content]", :placeholder => "type a message", :type => "text", :value => ""}
-          %label.input-box__image{:for => "message_image"}
+          %input.input-box__text{name: "message[content]", placeholder: "type a message", type: "text", value: ""}
+          %label.input-box__image{for: "message_image"}
             = fa_icon 'picture-o', class: 'icon'
-            %input.input-box__image__file{:name => "message[image]", :type => "file", :value => ""}
-        %input.submit-btn{:name => "commit", :data-disable-with => "Send", :type => "submit", :value => "Send"}
+            %input.input-box__image__file{name: "message[image]", type: "file", value: ""}
+        %input.submit-btn{name: "commit", data-disable-with: "Send", type: "submit", value: "Send"}
 
 
 
