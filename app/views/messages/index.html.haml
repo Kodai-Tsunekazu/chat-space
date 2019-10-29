@@ -36,15 +36,22 @@
           テスト
 
     .form
-      %form.new-message
-        .input-box
-          %input.input-box__text{name: "message[content]", placeholder: "type a message", type: "text", value: ""}
-          %label.input-box__image{for: "message_image"}
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
             = fa_icon 'picture-o', class: 'icon'
-            %input.input-box__image__file{name: "message[image]", type: "file", value: ""}
-        %input.submit-btn{name: "commit", type: "submit", value: "Send"}
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
+      -# %form.new-message
+      -#   .input-box
+      -#     %input.input-box__text{name: "message[content]", placeholder: "type a message", type: "text", value: ""}
+      -#     %label.input-box__image{for: "message_image"}
+      -#       = fa_icon 'picture-o', class: 'icon'
+      -#       %input.input-box__image__file{name: "message[image]", type: "file", value: ""}
+      -#   %input.submit-btn{name: "commit", type: "submit", value: "Send"}
 
-        -# data-disable-with: "Send",
+      -#   -# data-disable-with: "Send",
 
 
 
