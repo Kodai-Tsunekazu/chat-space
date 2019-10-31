@@ -10,7 +10,9 @@
         %ul.main-header__left-box__member-list 
           Member:
           %li.main-header__left-box_member-list__member 
-            メンバー名
+            - @group.group_users.each do |group_users| 
+              = group_users.user.name 
+              end
           %li.main-header__left-box_member-list__member 
             メンバー名
       .main-header__right-box
@@ -18,33 +20,25 @@
           = fa_icon 'cog', class: 'icon'
     
     .messages
-      .message
-        .message__upper-info
-          %p.message__upper-info__talker
-            ユーザー名
-          %p.message__upper-info__date
-            日付
-        %p.message__text
-          テスト
-      .message
-        .message__upper-info
-          %p.message__upper-info__talker
-            ユーザー名
-          %p.message__upper-info__date
-            日付
-        %p.message__text
-          テスト
-
+       = render partial: 'message', collection: @messages
+      
     .form
-      %form.new-message
-        .input-box
-          %input.input-box__text{name: "message[content]", placeholder: "type a message", type: "text", value: ""}
-          %label.input-box__image{for: "message_image"}
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
             = fa_icon 'picture-o', class: 'icon'
-            %input.input-box__image__file{name: "message[image]", type: "file", value: ""}
-        %input.submit-btn{name: "commit", type: "submit", value: "Send"}
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
+      -# %form.new-message
+      -#   .input-box
+      -#     %input.input-box__text{name: "message[content]", placeholder: "type a message", type: "text", value: ""}
+      -#     %label.input-box__image{for: "message_image"}
+      -#       = fa_icon 'picture-o', class: 'icon'
+      -#       %input.input-box__image__file{name: "message[image]", type: "file", value: ""}
+      -#   %input.submit-btn{name: "commit", type: "submit", value: "Send"}
 
-        -# data-disable-with: "Send",
+      -#   -# data-disable-with: "Send",
 
 
 
